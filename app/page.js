@@ -4,6 +4,9 @@ import Image from "next/image";
 
 
 export default function Home() {
+
+  let a = 'asda'
+
   return (
     <>
       <div style={{ backgroundColor: '#f2f2f2' }} className="w-full p-[40px] h-screen flex justify-center items-center">
@@ -27,7 +30,7 @@ export default function Home() {
             </p>
             <div className="w-full flex justify-center items-center mt-[20px]">
               <Link href='/login'>
-                <button type="button" class="px-5 py-2.5 text-sm font-medium text-white bg-blue-400 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Use App</button>
+                <button type="button" className="px-5 py-2.5 text-sm font-medium text-white bg-blue-400 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Use App</button>
               </Link>
             </div>
           </div>
