@@ -1,8 +1,9 @@
+"use client"
 import React from "react";
 import Link from "next/link";
 
-
 export default function Login() {
+
   return (
     <>
       <div className="w-full h-full pt-40">
@@ -106,7 +107,7 @@ export default function Login() {
 }
 
 
-export const metadata = {
-  title: "Login | Research Study",
-  description: "",
-};
+// export const metadata = {
+//   title: "Login | Research Study",
+//   description: "",
+// };

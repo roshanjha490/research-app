@@ -5,8 +5,6 @@ import Image from "next/image";
 
 export default function Home() {
 
-  let a = 'asda'
-
   return (
     <>
       <div style={{ backgroundColor: '#f2f2f2' }} className="w-full p-[40px] h-screen flex justify-center items-center">
