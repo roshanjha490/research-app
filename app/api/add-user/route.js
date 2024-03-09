@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { get_table_data_by_array, insert_data_in_table } from "@/lib/db";
 
-export async function GET(request) {
+export async function POST(request) {
     // let sq1 = {
     //     table_name: 'users',
     //     where_array: {

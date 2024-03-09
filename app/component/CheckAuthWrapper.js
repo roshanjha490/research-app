@@ -6,10 +6,10 @@ function CheckAuthWrapper({ children }) {
 
     const { data: session } = useSession()
 
-    if (session) {
-        return <>{children}</>;
-    } else {
-        return <p>Not Logged In</p>;
+    if(session){
+        return (<><p>Page is restricted</p></>)
+    }else{
+        return (<>{children}</>)
     }
 }
 
