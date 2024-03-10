@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth'
 import GithubProvider from "next-auth/providers/github"
+import CredentialsProvider from "next-auth/providers/credentials"
 import { get_table_data_by_array, insert_data_in_table } from "@/lib/db";
 
 const handler = NextAuth({
@@ -9,6 +10,22 @@ const handler = NextAuth({
             clientId: process.env.GITHUB_ID,
             clientSecret: process.env.GITHUB_SECRET,
         }),
+        CredentialsProvider({
+            name: "Credentials",
+            credentials: {
+                email: { label: "Email", type: "email", placeholder: "example@abc.com" },
+                password: { label: "Password", type: "password" }
+            },
+            async authorize(credentials) {
+                const user = { email: credentials.email, password: credentials.password }
+
+                if (user) {
+                    return user
+                } else {
+                    return null
+                }
+            }
+        })
     ],
     callbacks: {
         async jwt({ token, user }) {

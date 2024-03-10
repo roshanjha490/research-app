@@ -6,13 +6,6 @@ import SignUpButton from "./SignUpButton";
 
 export default function Registration() {
 
-  const userregistration = async (e) => {
-    "use server"
-    setTimeout(() => {
-      return 'Hello world';
-    }, 5000);
-  }
-
   return (
     <>
       <div className="w-full h-full pt-20">
@@ -33,7 +26,7 @@ export default function Registration() {
                   <div className="text-blueGray-400 text-center mb-3 font-bold">
                     <small>Or sign up with credentials</small>
                   </div>
-                  <form action={userregistration}>
+                  <form>
 
                     <div className="relative w-full mb-3">
                       <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
