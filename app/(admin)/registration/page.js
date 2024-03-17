@@ -115,4 +115,7 @@ export default function Registration() {
 export const metadata = {
   title: "Registration | Research Study",
   description: "",
+  icons: {
+    icon: '/icon.png'
+  }
 };
