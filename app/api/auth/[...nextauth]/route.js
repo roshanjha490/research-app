@@ -13,11 +13,12 @@ const handler = NextAuth({
         CredentialsProvider({
             name: "Credentials",
             credentials: {
+                name: { label: "name", type: "text", placeholder: "Roshan Jha" },
                 email: { label: "Email", type: "email", placeholder: "example@abc.com" },
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials) {
-                const user = { email: credentials.email, password: credentials.password }
+                const user = { name: credentials.name, email: credentials.email, password: credentials.password }
 
                 if (user) {
                     return user
@@ -42,6 +43,11 @@ const handler = NextAuth({
         },
         async signIn({ user }) {
 
+            console.log(user)
+            console.log(user.name)
+            console.log(user.password)
+            console.log(user.hasOwnProperty('password'))
+
             let sql = {
                 table_name: 'users',
                 where_array: {
@@ -52,14 +58,27 @@ const handler = NextAuth({
 
             let db_response = await get_table_data_by_array(sql)
 
+            let insert_sql
+
             if (db_response[0].length === 0) {
 
-                let insert_sql = {
-                    table_name: 'users',
-                    data: {
-                        name: user.name,
-                        email: user.email,
-                        password: 'NOT SET'
+                if (user.hasOwnProperty('password')) {
+                    insert_sql = {
+                        table_name: 'users',
+                        data: {
+                            name: user.name,
+                            email: user.email,
+                            password: user.password
+                        }
+                    }
+                } else {
+                    insert_sql = {
+                        table_name: 'users',
+                        data: {
+                            name: user.name,
+                            email: user.email,
+                            password: 'NOT SET'
+                        }
                     }
                 }
 

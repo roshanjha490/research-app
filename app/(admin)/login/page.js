@@ -9,9 +9,12 @@ const Login = () => {
 
   const userLogin = async (e) => {
 
+    e.preventDefault()
+
     const signInData = await signIn('credentials', {
-      email: e.get("email"),
-      password: e.get("password"),
+      name: 'Krishan Jha',
+      email: 'krishanworld@live.com',
+      password: '2313123123',
       redirect: false
     })
 
