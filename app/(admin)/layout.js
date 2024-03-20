@@ -4,6 +4,8 @@ import React from "react";
 import SessionWrapper from "../component/SessionWrapper";
 import { getServerSession } from "next-auth/next"
 import { redirect } from 'next/navigation'
+import { Toaster } from 'react-hot-toast';
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -68,22 +70,23 @@ const AdminLayout = async ({ children }) => {
                                 </div>
                             </div>
                         </nav>
-                        <div className="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
+                        <div className="z-[0] absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
                             style={{
                                 backgroundImage: "url('/img/register_bg_2.png')"
                             }}
                         ></div>
-                        <main>
+                        <main className="h-auto">
                             <section>
                                 {children}
                             </section>
                         </main>
-                        <footer className="absolute bottom-0 w-full h-[50px] flex justify-center items-center">
+                        <footer className="z-[99] w-full h-[50px] flex justify-center items-center">
                             <div>
                                 <p className="text-white">Created with ❣️ by Roshan Jha</p>
                             </div>
                         </footer>
                     </div>
+                    <Toaster position="top-center"/>
                 </SessionWrapper>
             </>
         )

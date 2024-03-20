@@ -43,11 +43,6 @@ const handler = NextAuth({
         },
         async signIn({ user }) {
 
-            console.log(user)
-            console.log(user.name)
-            console.log(user.password)
-            console.log(user.hasOwnProperty('password'))
-
             let sql = {
                 table_name: 'users',
                 where_array: {
@@ -84,17 +79,18 @@ const handler = NextAuth({
 
                 let insert_db_response = await insert_data_in_table(insert_sql);
 
+                user.app_id = insert_db_response[0].insertId
+
                 return {
-                    ...user,
-                    app_id: insert_db_response[0].insertId
+                    ...user
                 }
             } else {
 
                 user.app_id = db_response[0][0].id
+                user.name = db_response[0][0].name
 
                 return {
-                    ...user,
-                    app_id: db_response[0][0].id
+                    ...user
                 }
             }
 
