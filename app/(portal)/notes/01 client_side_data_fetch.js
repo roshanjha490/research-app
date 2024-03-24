@@ -1,16 +1,33 @@
-"use server"
-import React from 'react';
+"use client"
+import React, { useState, useEffect } from 'react';
 import { useSession, signOut } from "next-auth/react"
 import { get_visitors_data } from '@/app/actions'
-import SignOut from './SignOut';
 
-const Notes = async () => {
+const Notes = () => {
 
-  const visitors = await get_visitors_data()
+  //  Below is the example
+  const [visitors, setVisitors] = useState([]);
+
+  useEffect(() => {
+
+    const fetchVisitors = async () => {
+      try {
+        const response = await get_visitors_data();
+        console.log(response);
+        setVisitors(response);
+      } catch (error) {
+        console.error('Error fetching visitors:', error);
+      }
+    };
+
+    fetchVisitors();
+
+  }, []);
+
 
   return (
     <div>
-      <SignOut></SignOut>
+      <button onClick={() => signOut()}>Sign out</button>
       <table>
         <thead>
           <tr>

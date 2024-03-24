@@ -58,3 +58,15 @@ export async function checkLogin(formData) {
     }
 
 }
+
+export async function get_visitors_data() {
+    try {
+        let response = await fetch('http://localhost:3000/api/visitors');
+        let data = await response.json(); // Parse JSON response
+
+        return data.data[0];
+    } catch (error) {
+        console.error('Error fetching visitors:', error);
+        return null; // Handle errors appropriately
+    }
+}
