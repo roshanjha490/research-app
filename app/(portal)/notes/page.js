@@ -2,7 +2,7 @@
 import React from 'react'
 import { useSession, signOut } from "next-auth/react"
 
-const page = () => {
+const Notes = () => {
 
   console.log(useSession());
 
@@ -13,4 +13,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Notes
