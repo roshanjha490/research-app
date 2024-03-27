@@ -1,36 +1,22 @@
-"use server"
+"use client"
 import React from 'react';
-import { useSession, signOut } from "next-auth/react"
-import { get_visitors_data } from '@/app/actions'
 import SignOut from './SignOut';
+import { useEffect } from 'react';
+import useWebSocket from './websocket';
+const Notes = () => {
 
-const Notes = async () => {
-
-  const visitors = await get_visitors_data()
+  const messages = useWebSocket('https://symphony.acagarwal.com:3000/apimarketdata')
 
   return (
-    <div>
-      <SignOut></SignOut>
-      <table>
-        <thead>
-          <tr>
-            <th>S.No</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>IP Address</th>
-          </tr>
-        </thead>
-        <tbody>
-          {visitors.map((visitor, index) => (
-            <tr key={index}>
-              <td>{index + 1}</td>
-              <td>{visitor.first_name} {visitor.last_name}</td>
-              <td>{visitor.email}</td>
-              <td>{visitor.ip_address}</td>
-            </tr>
+    <div className='w-full h-auto min-h-screen'>
+      <div className="w-100 h-[80px] flex justify-end items-center bg-slate-900">
+        <SignOut></SignOut>
+        <ul>
+          {messages.map((message, index) => (
+            <li key={index}>{message}</li>
           ))}
-        </tbody>
-      </table>
+        </ul>
+      </div>
     </div>
   )
 }
