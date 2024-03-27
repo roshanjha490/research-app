@@ -1,7 +1,6 @@
 // hooks/useWebSocket.js
 import { useEffect, useState } from 'react';
-// import { Socket } from 'socket.io';
-
+import { io } from 'socket.io-client';
 
 const useWebSocket = (url) => {
     const [messages, setMessages] = useState([]);
@@ -46,8 +45,11 @@ const useWebSocket = (url) => {
 
             if (body.type === "success" && body.result.token) {
                 const token = body.result.token;
-                const socket = new WebSocket(`wss://symphony.acagarwal.com:3000/apimarketdata/interactive/socket.io?token=${token}&userID=${userID}&publishFormat=${publishFormat}&broadcastMode=${broadcastFormat}`);
+
+                const socket = new WebSocket(`wss://symphony.acagarwal.com:3000/apimarketdata/socket.io/?token=${token}&userID=${userID}&publishFormat=${publishFormat}&broadcastMode=${broadcastFormat}&transport=websocket&EIO=3`);
+
                 socket.onopen = () => {
+                    // socket.send('40["1501-json-full"]')
                     console.log('WebSocket connected');
                 };
                 socket.onmessage = (event) => {
